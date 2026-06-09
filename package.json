@@ -1,0 +1,19 @@
+{
+  "name": "tidy",
+  "version": "1.0.0",
+  "description": "简洁看板式任务管理 — 让生活和工作井井有条",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^5.4.11"
+  }
+}
