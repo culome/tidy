@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 
-export default function TopBar({ title, onTitle, total, completed, search, onSearch, onAdd, onClearCompleted }) {
+export default function TopBar({ title, onTitle, total, completed, search, onSearch, onAdd, onClearCompleted, showCompleted, onToggleCompleted }) {
   const titleRef = useRef(null);
 
   const commitTitle = () => {
@@ -26,7 +26,15 @@ export default function TopBar({ title, onTitle, total, completed, search, onSea
           {title}
         </h1>
         <div className="meta">
-          <span>{completed}</span> Completed ·{' '}
+          <button
+            className={'completed-toggle' + (showCompleted ? ' open' : '')}
+            onClick={onToggleCompleted}
+            title="展开/收起已完成"
+          >
+            <span className="caret">▸</span>
+            <span className="num">{completed}</span> 已完成
+          </button>
+          {' · '}
           <a
             href="#"
             onClick={(e) => {
@@ -34,7 +42,7 @@ export default function TopBar({ title, onTitle, total, completed, search, onSea
               onClearCompleted();
             }}
           >
-            Clear
+            清除
           </a>
         </div>
       </div>

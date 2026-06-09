@@ -1,9 +1,9 @@
 export const STORAGE_KEY = 'tidy.board.v1';
 
 export const COLUMNS = [
-  { id: 'todo', name: 'Todo' },
-  { id: 'doing', name: 'Doing' },
-  { id: 'backlog', name: 'Backlog' },
+  { id: 'todo', name: '待办 Todo' },
+  { id: 'doing', name: '进行中 Doing' },
+  { id: 'backlog', name: '储备 Backlog' },
 ];
 
 export const PRIORITY_LABEL = { low: 'LOW', med: 'MED', high: 'HIGH' };

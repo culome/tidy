@@ -5,6 +5,7 @@ import Sidebar from './components/Sidebar';
 import TopBar from './components/TopBar';
 import Board from './components/Board';
 import Notes from './components/Notes';
+import CompletedPanel from './components/CompletedPanel';
 import TaskModal from './components/TaskModal';
 
 export default function App() {
@@ -16,6 +17,7 @@ export default function App() {
 
   const [search, setSearch] = useState('');
   const [modal, setModal] = useState(null); // { id } | { status } | null
+  const [showCompleted, setShowCompleted] = useState(false);
 
   const board = state.boards.find((b) => b.id === state.activeBoard) || state.boards[0];
   const inNotes = state.activeView === 'notes';
@@ -110,7 +112,8 @@ export default function App() {
   }, [modal, inNotes]);
 
   const total = board.tasks.length;
-  const completed = board.tasks.filter((t) => t.done).length;
+  const completedTasks = board.tasks.filter((t) => t.done);
+  const completed = completedTasks.length;
 
   return (
     <div className="app-shell">
@@ -146,6 +149,8 @@ export default function App() {
               onSearch={setSearch}
               onAdd={() => setModal({ status: 'todo' })}
               onClearCompleted={clearCompleted}
+              showCompleted={showCompleted}
+              onToggleCompleted={() => setShowCompleted((v) => !v)}
             />
             <Board
               tasks={board.tasks}
@@ -155,6 +160,18 @@ export default function App() {
               onOpen={(id) => setModal({ id })}
               onAddTo={(status) => setModal({ status })}
             />
+            <div className={'completed-drawer' + (showCompleted ? ' open' : '')}>
+              <div className="completed-drawer-inner">
+                <div className="completed-drawer-head">
+                  已完成 · {completed}
+                </div>
+                <CompletedPanel
+                  tasks={completedTasks}
+                  onToggle={toggleDone}
+                  onDelete={deleteTask}
+                />
+              </div>
+            </div>
           </>
         )}
       </div>

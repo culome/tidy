@@ -54,7 +54,7 @@ export default function Sidebar({
             className={'sidebar-item' + (activeView === 'notes' ? ' active' : '')}
             onClick={onSelectNotes}
           >
-            <span className="dot notes" />
+            <span className="dot dot-notes" />
             <span className="sidebar-name">记事簿</span>
           </li>
         </ul>
